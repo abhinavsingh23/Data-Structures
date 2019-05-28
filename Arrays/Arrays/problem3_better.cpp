@@ -3,8 +3,6 @@ using namespace std;
 #include <iostream>
 #include<stdio.h>
 
-
-
 /*
 	Given an array of positive integers. Your task is to find the leaders in the array.
 	Note: An element of array is leader if it is greater than or equal to all the elements to its right side. Also, the rightmost 		element is always a leader. 
@@ -41,43 +39,52 @@ using namespace std;
 
 */
 
+int maximum(int Arr[] , int start, int end){
+	int i;
+	int max_i=start;
+	for(i=start; i<=end; i++){
+		if(Arr[i]>Arr[max_i]){
+			max_i=i;
+		}
+	
+	}
+	printf("%d ", Arr[max_i]);
+	if(max_i==end){
+		return 0;
+	}
+	maximum(Arr,max_i+1,end);
+
+}
 
 
 int main(){
 
-	
-	int i,T;
-	scanf("%d",&T);
-	
+
+	int T;
+	scanf("%d", &T);
+	int i;
 	while (T--){
 
 		int N;
-		cin >> N;
+		scanf("%d", &N);
 		int Arr[N];
 		
 		for(i=0;i<N;i++){
-			scanf("%d",&Arr[i]);
-		}
-
-		int leader_i;
-		leader_i= 0;
-bingo:		
-		for(i=(leader_i+1);i<N;i++){
-			if(Arr[i]>Arr[leader_i]){
-				leader_i=i;
-			}
-		}
-		if(leader_i!=(N-1)){
-			printf("%d ",Arr[leader_i]);
-		}
-		leader_i++;
-		if(leader_i>=N-1){
-			printf("%d \n", Arr[N-1]);
-			continue;
+			scanf("%d", &Arr[i]);
 		}
 		
-		goto bingo;
+		int start,end;
+		start=0;
+		end=N-1;
+		maximum(Arr,start,end);
+		
+		printf("\n");
+
 	}
+
+
+
+
 
 
 
